@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+  node-keystone: # Node.js App
+    build: .
+    ports:
+      - "3000:3000" # Expose API port
+    volumes: # Attach local directory
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - mongo
+    environment: # Set ENV vars
+      - DATABASE_URL=mongodb://mongo:27017
+    command: npm run dev
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017

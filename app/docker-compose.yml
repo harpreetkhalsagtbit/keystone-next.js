@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  node-next: # Node.js App
+    build: .
+    ports:
+      - "8080:3000" # Expose API port
+    volumes: # Attach local directory
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    command: tail -F anything
+
+  
